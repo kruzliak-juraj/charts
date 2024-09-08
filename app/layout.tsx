@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { Layout, Typography } from "antd";
+import { Header, Content, Footer } from "antd/lib/layout/layout";
+import Text from "antd/lib/typography/Text";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,7 +30,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+          <Typography>
+            <Layout>
+              <Header style={{ display: "flex", alignItems: "center" }}>
+                <Text style={{ color: "white" }}>Charts app</Text>
+              </Header>
+              <Content style={{ padding: "0 48px" }}>{children}</Content>
+              <Footer style={{ textAlign: "center" }}>
+                Ant Design ©{new Date().getFullYear()} Created by Juraj
+                Kružliak
+              </Footer>
+            </Layout>
+          </Typography>
+        </AntdRegistry>
       </body>
     </html>
   );
